@@ -4,3 +4,4 @@ soundfile
 resemblyzer
 setuptools<81
 streamlit
+faster-whisper==1.2.1
