@@ -6,3 +6,4 @@ venv/
 *.wav
 *.mp3
 .DS_Store
+backend/voice_integrity.db
