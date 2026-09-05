@@ -1,0 +1,20 @@
+# Backend (Role 3) dependencies.
+#
+# Note: speaker_verification.py / prosody.py / spoof_heuristic.py already
+# require numpy, librosa, soundfile, resemblyzer — those are listed in the
+# repo-root requirements.txt. This file adds ONLY what the backend layer
+# itself needs on top of that. Install both when setting up a fresh env:
+#
+#   pip install -r requirements.txt              (repo root)
+#   pip install -r backend/requirements.txt
+
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.5
+PyYAML>=6.0
+python-multipart>=0.0.9   # required by FastAPI for multipart/form-data (file uploads)
+pytest>=8.0
+httpx>=0.27               # used by FastAPI's TestClient in tests
+
+# setuptools<81 is already pinned in the repo-root requirements.txt
+# (needed by resemblyzer / pkg_resources) — no change needed here.
