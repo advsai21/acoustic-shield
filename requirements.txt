@@ -1,0 +1,6 @@
+numpy
+librosa
+soundfile
+resemblyzer
+setuptools<81
+streamlit
