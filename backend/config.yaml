@@ -1,0 +1,36 @@
+# backend/config.yaml
+#
+# Central configuration for the Voice Integrity Verification backend.
+# Nothing in app/ should hardcode these values directly — load them
+# through app.config.get_settings() instead.
+
+audio:
+  target_sample_rate: 16000
+  window_seconds: 2.0
+  min_window_seconds: 1.0
+  max_window_seconds: 3.0
+  denoise: false          # no denoising stage implemented yet — see ingestion/audio.py
+  speaker_buffer_seconds: 1.8   # rolling buffer window fed to speaker_verification.verify()
+
+fusion:
+  weights:
+    spoof: 0.40
+    speaker: 0.30   # applied as (1 - speaker_similarity)
+    prosody: 0.15
+    context: 0.15
+  ema_alpha: 0.40
+
+risk_bands:
+  low_max: 30      # 0-30      -> LOW
+  medium_max: 65   # 31-65     -> MEDIUM, 66-100 -> HIGH
+
+actions:
+  LOW: "ALLOW"
+  MEDIUM: "CALLBACK_VERIFICATION"
+  HIGH: "REQUIRE_MFA_OR_ESCALATE"
+
+storage:
+  database_url: "sqlite:///./voice_integrity.db"
+
+logging:
+  level: "INFO"

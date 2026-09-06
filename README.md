@@ -72,13 +72,15 @@ speaker-drift detection won't work in production either** — flag this in
 your integration sync.
 
 ## What's fake vs. real right now
-- **Real:** speaker verification, prosody analysis, the fusion math, the
-  rolling-buffer fix, the dashboard.
+- **Real:** speaker verification, prosody analysis, the fusion math, the rolling-buffer fix, the dashboard, spoof detection (spoof_heuristic.py — pretrained HF anti-spoofing model, with an automatic heuristic fallback if the model can't load).
+
 - **Placeholder (needs real teammate work before the actual demo):**
-  - `spoof_heuristic.py` — replace with Role 1's trained classifier
-  - `context_signals.py` — replace with Role 4's ASR + NLP pipeline
-  - `fusion.py` — Role 3 may want to move this into their FastAPI backend
-    instead of running it client-side in Streamlit
+   -context_signals.py — replace with Role 4's ASR + NLP pipeline
+   -fusion.py — Role 3 may want to move this into their FastAPI backend instead of running it client-side in Streamlit
+
+- **Needs a one-time verification pass:**
+   -spoof_heuristic.py — set/confirm _HF_MODEL_ID (or the SPOOF_MODEL_ID env var) against a real, currently-live HuggingFace checkpoint, and run quick_test_spoof.py against real genuine/TTS clips to confirm scores separate correctly.
+
 - **Synthetic test audio (`demo_audio.py`)** — sine-wave stand-ins, not
   real speech. Good enough to prove the pipeline reacts correctly and to
   rehearse the demo flow, but before presenting to judges, swap in:
