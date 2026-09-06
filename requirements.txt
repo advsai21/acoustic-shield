@@ -4,3 +4,13 @@ soundfile
 resemblyzer
 setuptools<81
 streamlit
+faster-whisper==1.2.1
+transformers
+torch --index-url https://download.pytorch.org/whl/cpu
+# Windows note: if `pip install -r requirements.txt` fails building
+# webrtcvad (a resemblyzer dependency) with a "Microsoft Visual C++ 14.0
+# required" error, run this instead:
+#   pip install resemblyzer --no-deps
+#   pip install webrtcvad-wheels
+#   pip install -r requirements.txt
+# (webrtcvad-wheels ships a precompiled binary; not needed on Mac/Linux)
